@@ -43,6 +43,8 @@ def check_delete(filepath):
         remove(filepath)
         create_db(filepath)
         print("Database wiped, new database created!")
+    else:
+        pass
 
 
 def create_connection(filepath):
@@ -57,7 +59,6 @@ def create_connection(filepath):
     try:
         # Connect to the database object and print current sqlite3 version, throw error if it fails
         conn = sq.connect(filepath)
-        print(sq.version)
         return conn
     except sq.Error as e:
         print(e)
@@ -89,7 +90,8 @@ def create_db(filepath):
     # Database statement being used with create_table function
     sql_create_users_table = """CREATE TABLE IF NOT EXISTS users (
                                     username text,
-                                    password_hash text
+                                    password_hash text,
+                                    great_secret text
                                     );
                              """
     # Create connection object from database filepath
